@@ -72,6 +72,7 @@ public class DetailActivity extends AppCompatActivity {
             tvReleaseDate.setText(releaseDate);
         }catch (Exception e){
             Log.d("ONCREATEERROR", "onCreate: "+ e.getMessage());
+            Log.d("ERROR", "onCreate: " + e.getLocalizedMessage());
         }
     }
 }

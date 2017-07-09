@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         mGridView.setOnItemClickListener(moviePosterClickListener);
 
         if (savedInstanceState == null){
-            getMoviesFromTMDB(getSortMethod());
+            getMoviesFromTMDB(getSortMethod(getString(R.string.path_top_rated_movie)));
         } else {
             Parcelable[] parcelable = savedInstanceState.getParcelableArray(getString(R.string.parcel_movie));
 
@@ -58,21 +58,21 @@ public class MainActivity extends AppCompatActivity {
 
 //        Refresh
         if (id == R.id.action_refresh) {
-            getMoviesFromTMDB(getSortMethod());
+            getMoviesFromTMDB(getSortMethod(getString(R.string.path_top_rated_movie)));
             return true;
         }
 
 //        Sort by Popular Movies
-        if (id == R.string.action_popular_movies) {
+        if (id == R.id.action_popular_movies) {
             updateSharedPrefs(getString(R.string.path_popular_movie));
-            getMoviesFromTMDB(getSortMethod());
+            getMoviesFromTMDB(getSortMethod(getString(R.string.path_popular_movie)));
             return true;
         }
 
 //        Sort by Top Rated Movies
-        if (id == R.string.action_top_rated_movies) {
+        if (id == R.id.action_top_rated_movies) {
             updateSharedPrefs(getString(R.string.path_top_rated_movie));
-            getMoviesFromTMDB(getSortMethod());
+            getMoviesFromTMDB(getSortMethod(getString(R.string.path_top_rated_movie)));
             return true;
         }
 
@@ -119,10 +119,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public String getSortMethod() {
+    public String getSortMethod(String sort) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        return prefs.getString(getString(R.string.pref_sort_method_key),
-                getString(R.string.path_popular_movie));
+        return prefs.getString(getString(R.string.pref_sort_method_key), sort);
     }
 
     private void updateSharedPrefs(String sortMethod) {

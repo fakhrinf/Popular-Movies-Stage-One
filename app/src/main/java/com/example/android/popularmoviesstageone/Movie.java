@@ -101,7 +101,7 @@ public class Movie implements Parcelable {
         mOriginalTitle = in.readString();
         mPosterPath = in.readString();
         mOverview = in.readString();
-        mVoteAverage = (Double) in.readValue(Double.class.getClassLoader());
+        mVoteAverage = in.readDouble();
         mReleaseDate = in.readString();
     }
 }
